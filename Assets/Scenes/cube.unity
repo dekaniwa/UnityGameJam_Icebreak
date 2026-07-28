@@ -5463,6 +5463,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6320128053573973410, guid: 99ab910dd260d494bbd82e9fc1b7098b, type: 3}
+      propertyPath: gameCameraScript
+      value: 
+      objectReference: {fileID: 482147059}
     - target: {fileID: 6371149303624826975, guid: 99ab910dd260d494bbd82e9fc1b7098b, type: 3}
       propertyPath: m_Height
       value: 7

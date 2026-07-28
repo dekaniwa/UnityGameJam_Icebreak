@@ -2,77 +2,69 @@ using UnityEngine;
 
 public class TitleCameraMove : MonoBehaviour
 {
-    private Transform mainCamera; // 呼び出したMain Cameraのtransformを保持
+    private Transform mainCamera;
 
     [Header("カメラ位置")]
-    public Transform titleCameraPos;   // マップ全体を見せる位置
-    public Transform gameCameraPos;    // ゲーム開始時のカメラ位置
+    public Transform titleCameraPos;
+    public Transform gameCameraPos;
 
     [Header("移動設定")]
-    public float moveSpeed = 50.0f;     // 移動速度
-    public float rotateSpeed = 60f;    // 回転速度(度/秒)
+    public float transitionDuration = 2.0f; // 移動にかける秒数
 
     [Header("プレイヤー")]
-    public MonoBehaviour playerController; // プレイヤー操作スクリプト(あれば)
+    public MonoBehaviour playerController;
 
-    private bool moveCamera = false;   // 移動中かどうかのフラグ
-    private bool gameStarted = false;  // すでにスタート済みかどうか
+    [Header("競合するカメラスクリプト")]
+    public GameCamera gameCameraScript; // GameCamera.csをここにドラッグ
+
+    private bool moveCamera = false;
+    private bool gameStarted = false;
+    private float elapsedTime = 0f;
 
     void Start()
     {
-        // シーン内のMainCameraタグが付いたカメラを探して取得
         mainCamera = Camera.main.transform;
 
-        // ゲーム開始時、カメラをタイトル位置に固定
+        // タイトル演出中はGameCameraを無効化しておく(位置の取り合いを防ぐ)
+        if (gameCameraScript != null)
+            gameCameraScript.enabled = false;
+
         mainCamera.position = titleCameraPos.position;
         mainCamera.rotation = titleCameraPos.rotation;
 
-        // プレイヤー操作はまだ無効にしておく
         if (playerController != null)
             playerController.enabled = false;
     }
 
     void Update()
     {
-        Debug.Log("Update実行中");
-
-        // まだスタートしていない間、Aボタンの入力をチェック
         if (!gameStarted)
         {
-            // コントローラーのAボタン(joystick button 0) または キーボードのSpaceキー
             if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.J))
             {
                 gameStarted = true;
                 moveCamera = true;
+                elapsedTime = 0f;
             }
             return;
         }
 
-        // ここから下はカメラ移動処理
         if (!moveCamera) return;
 
-        // 現在位置からgameCameraPosへ徐々に近づける
-        mainCamera.position = Vector3.MoveTowards(
-            mainCamera.position,
-            gameCameraPos.position,
-            moveSpeed * Time.deltaTime
-        );
+        elapsedTime += Time.deltaTime;
+        float t = Mathf.Clamp01(elapsedTime / transitionDuration);
 
-        // 向きも同時に近づける
-        mainCamera.rotation = Quaternion.RotateTowards(
-            mainCamera.rotation,
-            gameCameraPos.rotation,
-            rotateSpeed * Time.deltaTime
-        );
+        mainCamera.position = Vector3.Lerp(titleCameraPos.position, gameCameraPos.position, t);
+        mainCamera.rotation = Quaternion.Slerp(titleCameraPos.rotation, gameCameraPos.rotation, t);
 
-        // 十分近づいたら移動終了とみなす
-        if (Vector3.Distance(mainCamera.position, gameCameraPos.position) < 0.05f)
+        if (t >= 1f)
         {
-            mainCamera.position = gameCameraPos.position;
-            mainCamera.rotation = gameCameraPos.rotation;
             moveCamera = false;
 
-            // 到着したのでプレイヤー操作を有効化
+            // 移動が終わったのでGameCameraを再度有効化
+            if (gameCameraScript != null)
+                gameCameraScript.enabled = true;
+
             if (playerController != null)
                 playerController.enabled = true;
         }
