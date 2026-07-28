@@ -14,6 +14,8 @@ public class TitleCameraMove : MonoBehaviour
     [Header("プレイヤー")]
     public MonoBehaviour playerController;
 
+    public GameObject startImage;
+
     [Header("競合するカメラスクリプト")]
     public GameCamera gameCameraScript; // GameCamera.csをここにドラッグ
 
@@ -42,6 +44,8 @@ public class TitleCameraMove : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.J))
             {
+                startImage.SetActive(false);
+
                 gameStarted = true;
                 moveCamera = true;
                 elapsedTime = 0f;

@@ -9,6 +9,8 @@ public class TimerManager : MonoBehaviour
     [SerializeField] private float timeLimit = 180.0f; // 制限時間(秒)
     [SerializeField] private TextMeshProUGUI timerText; // 表示用テキスト
 
+    [SerializeField] private GameObject gameClearUI;
+
     private float currentTime;
     private bool isTimerRunning = false;
 
@@ -37,6 +39,9 @@ public class TimerManager : MonoBehaviour
         {
             currentTime = 0f;
             isTimerRunning = false;
+
+            gameClearUI.SetActive(true);
+
             Debug.Log("制限時間終了");
             OnTimeUp?.Invoke();
         }
