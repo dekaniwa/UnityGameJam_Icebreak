@@ -1,5 +1,3 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +8,7 @@ public class Player : MonoBehaviour
     public float MoveSpeed = 5.0f;
     public float JumpPower = 6.0f;
 
-
+    
     Rigidbody m_rigidBody;
     Animator m_playerAnimator;
     GameObject m_mainCamera;
@@ -43,7 +41,7 @@ public class Player : MonoBehaviour
         // 移動速度を初期化
         Vector3 move = Vector3.zero;
 
-
+        MoveSpeed = Mathf.Max(2.0f, 5.0f - Inventory.Instance.GetItemCount() * 0.2f);
         // 前後移動
         if (Input.GetKey(KeyCode.W))
         {

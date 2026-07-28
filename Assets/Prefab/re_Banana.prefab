@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3735289617700277347
+--- !u!1001 &3631662347703193432
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -13,16 +13,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 4.2037034
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.24033467
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 12.55934
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       propertyPath: m_Name
-      value: food_Banana
+      value: re_Banana
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62,26 +74,26 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2352753709295610040}
+      addedObject: {fileID: 4996921776464553390}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3259956591383335397}
+      addedObject: {fileID: 4492119792337808848}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -650160718395651132}
+      addedObject: {fileID: 2169609400557219385}
   m_SourcePrefab: {fileID: 100100000, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
---- !u!1 &4546106523699900722 stripped
+--- !u!1 &4514621647710302729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
-  m_PrefabInstance: {fileID: 3735289617700277347}
+  m_PrefabInstance: {fileID: 3631662347703193432}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &2352753709295610040
+--- !u!64 &4996921776464553390
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4546106523699900722}
+  m_GameObject: {fileID: 4514621647710302729}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -90,32 +102,32 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7293317215515873503, guid: 923e4f07679463b4081c1eed04ae6fa2, type: 3}
---- !u!114 &-3259956591383335397
+--- !u!114 &4492119792337808848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4546106523699900722}
+  m_GameObject: {fileID: 4514621647710302729}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 835d963db793c6d429aba03083b357b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Banana
---- !u!54 &-650160718395651132
+--- !u!54 &2169609400557219385
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4546106523699900722}
+  m_GameObject: {fileID: 4514621647710302729}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -131,7 +143,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

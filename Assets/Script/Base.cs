@@ -2,15 +2,86 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    public GameObject applePrefab;
+    public GameObject lemonPrefab;
+    public GameObject carrotPrefab;
+    public GameObject bananaPrefab;
+    public GameObject orangePrefab;
+    private bool canDelivery = false;
+    private void OnTriggerEnter(Collider other)
+    { if (!other.CompareTag("Player"))
+        return;
+
+    canDelivery = true; if (!other.CompareTag("Player"))
+            return;
+
+        canDelivery = true;
+        Debug.Log("納品開始！");
+
         
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            canDelivery = false;
+        }
+    }
+    private void Update()
+    {
+        if (canDelivery && Input.GetKeyDown(KeyCode.E))
+        {
+            Delivery();
+        }
+    }
+    void Delivery()
+    {
+        Debug.Log("納品開始！");
+
+        Score.Instance.AddScore(Inventory.Instance.apple * 100);
+        Score.Instance.AddScore(Inventory.Instance.lemon * 150);
+        Score.Instance.AddScore(Inventory.Instance.carrot * 80);
+        Score.Instance.AddScore(Inventory.Instance.banana * 120);
+        Score.Instance.AddScore(Inventory.Instance.orange * 200);
+
+        SpawnItems(applePrefab, Inventory.Instance.apple);
+        SpawnItems(lemonPrefab, Inventory.Instance.lemon);
+        SpawnItems(carrotPrefab, Inventory.Instance.carrot);
+        SpawnItems(bananaPrefab, Inventory.Instance.banana);
+        SpawnItems(orangePrefab, Inventory.Instance.orange);
+
+        Inventory.Instance.apple = 0;
+        Inventory.Instance.lemon = 0;
+        Inventory.Instance.carrot = 0;
+        Inventory.Instance.banana = 0;
+        Inventory.Instance.orange = 0;
+    }
+    void SpawnItems(GameObject prefab, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = transform.position + new Vector3(
+                Random.Range(-1f, 1f),
+                0.5f,
+                Random.Range(-1f, 1f)
+            );
+
+            GameObject item = Instantiate(prefab, pos, Quaternion.identity);
+
+            Rigidbody rb = item.GetComponent<Rigidbody>();
+            Debug.Log("生成した：" + item.name);
+            if (rb != null)
+            {
+                Vector3 force = new Vector3(
+                    Random.Range(-3f, 3f),
+                    5f,
+                    Random.Range(-3f, 3f)
+                );
+
+                rb.AddForce(force, ForceMode.Impulse);
+            }
+            
+        }
         
     }
 }

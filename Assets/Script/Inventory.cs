@@ -20,8 +20,12 @@ public class Inventory : MonoBehaviour
         }
         Instance = this;
         }
+    public int GetItemCount()
+    {
+        return apple + lemon + carrot + banana + orange;
+    }
 
-        public void AddApple()
+    public void AddApple()
         {
         apple++;
         }
