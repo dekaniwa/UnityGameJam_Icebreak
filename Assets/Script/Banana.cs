@@ -19,7 +19,7 @@ public class Banana : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.Instance.AddBanana();
-
+            SEManager.Instance.PlayGet();
             Destroy(gameObject);
         }
     }

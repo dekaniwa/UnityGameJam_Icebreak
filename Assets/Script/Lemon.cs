@@ -19,7 +19,7 @@ public class Lemon : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.Instance.AddLemon();
-
+            SEManager.Instance.PlayGet();
             Destroy(gameObject);
         }
     }

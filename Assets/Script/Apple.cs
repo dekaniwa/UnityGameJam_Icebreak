@@ -19,7 +19,7 @@ public class Apple : MonoBehaviour
         if (other.CompareTag("Player"))
         {
            Inventory.Instance.AddApple();
-
+            SEManager.Instance.PlayGet();
             Destroy(gameObject);
         }
     }

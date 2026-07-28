@@ -19,7 +19,7 @@ public class Carotto : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.Instance.AddCarrot();
-
+            SEManager.Instance.PlayGet();
             Destroy(gameObject);
         }
     }

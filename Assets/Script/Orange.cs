@@ -19,7 +19,7 @@ public class Orange : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.Instance.AddOrange();
-
+            SEManager.Instance.PlayGet();
             Destroy(gameObject);
         }
     }

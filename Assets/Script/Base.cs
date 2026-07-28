@@ -37,7 +37,7 @@ public class Base : MonoBehaviour
     void Delivery()
     {
         Debug.Log("納品開始！");
-
+        SEManager.Instance.PlayDelivery();
         Score.Instance.AddScore(Inventory.Instance.apple * 100);
         Score.Instance.AddScore(Inventory.Instance.lemon * 150);
         Score.Instance.AddScore(Inventory.Instance.carrot * 80);
