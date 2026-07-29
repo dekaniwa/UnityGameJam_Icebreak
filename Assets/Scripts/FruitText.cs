@@ -12,6 +12,6 @@ public class FruitText : MonoBehaviour
 
     void Update()
     {
-        text.text = "Fruit : " + Inventory.Instance.GetItemCount();
+        text.text +=  Inventory.Instance.GetItemCount();
     }
 }

@@ -55,7 +55,7 @@ public class TimerManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
 
-        timerText.text = $"Time {minutes}:{seconds:00}";
+        timerText.text = $"{minutes}:{seconds:00}";
     }
 
     public void StopTimer()
