@@ -1,7 +1,6 @@
-
-
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultManager : MonoBehaviour
 {
@@ -13,40 +12,30 @@ public class ResultManager : MonoBehaviour
 
     public Transform spawnPoint;
 
+    public float spawnInterval = 0.2f;
+
     void Start()
     {
         StartCoroutine(SpawnForever());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.JoystickButton0) ||
+            Input.GetKeyDown(KeyCode.J))
+        {
+            Score.Instance.ResetData();
+
+            SceneManager.LoadScene("Title");
+        }
     }
 
     IEnumerator SpawnForever()
     {
         while (true)
         {
-            // ランダムにPrefabを選ぶ
-            int random = Random.Range(0, 5);
+            GameObject prefab = GetRandomPrefab();
 
-            GameObject prefab = null;
-
-            switch (random)
-            {
-                case 0:
-                    prefab = applePrefab;
-                    break;
-                case 1:
-                    prefab = lemonPrefab;
-                    break;
-                case 2:
-                    prefab = carrotPrefab;
-                    break;
-                case 3:
-                    prefab = bananaPrefab;
-                    break;
-                case 4:
-                    prefab = orangePrefab;
-                    break;
-            }
-
-            // 少しランダムな位置に出す
             Vector3 pos = spawnPoint.position + new Vector3(
                 Random.Range(-0.3f, 0.3f),
                 0f,
@@ -55,7 +44,26 @@ public class ResultManager : MonoBehaviour
 
             Instantiate(prefab, pos, Quaternion.identity);
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    GameObject GetRandomPrefab()
+    {
+        int random = Random.Range(0, 5);
+
+        switch (random)
+        {
+            case 0:
+                return applePrefab;
+            case 1:
+                return lemonPrefab;
+            case 2:
+                return carrotPrefab;
+            case 3:
+                return bananaPrefab;
+            default:
+                return orangePrefab;
         }
     }
 }

@@ -9,16 +9,11 @@ public class Base : MonoBehaviour
     public GameObject orangePrefab;
     private bool canDelivery = false;
     private void OnTriggerEnter(Collider other)
-    { if (!other.CompareTag("Player"))
-        return;
-
-    canDelivery = true; if (!other.CompareTag("Player"))
+    {
+        if (!other.CompareTag("Player"))
             return;
 
         canDelivery = true;
-        Debug.Log("納品開始！");
-
-        
     }
     private void OnTriggerExit(Collider other)
     {
