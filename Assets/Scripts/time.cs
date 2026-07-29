@@ -1,20 +1,18 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance { get; private set; }
 
-    [SerializeField] private float timeLimit = 180.0f; // 制限時間(秒)
-    [SerializeField] private TextMeshProUGUI timerText; // 表示用テキスト
-
-    [SerializeField] private GameObject gameClearUI;
+    [SerializeField] private float timeLimit = 180.0f;
+    [SerializeField] private TextMeshProUGUI timerText;
 
     private float currentTime;
     private bool isTimerRunning = false;
 
-    // 時間切れになったら通知するイベント(他の人がここに処理を追加できる)
     public event Action OnTimeUp;
 
     void Awake()
@@ -40,10 +38,11 @@ public class TimerManager : MonoBehaviour
             currentTime = 0f;
             isTimerRunning = false;
 
-            gameClearUI.SetActive(true);
-
             Debug.Log("制限時間終了");
+
             OnTimeUp?.Invoke();
+
+            SceneManager.LoadScene("Result");
         }
 
         UpdateTimerDisplay();
@@ -55,11 +54,22 @@ public class TimerManager : MonoBehaviour
 
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
-        timerText.text = string.Format("Time{0}:{1:00}", minutes, seconds);
-    }
-  
 
-    public void StopTimer() => isTimerRunning = false;
-    public void ResumeTimer() => isTimerRunning = true;
-    public float GetRemainingTime() => currentTime;
+        timerText.text = $"Time {minutes}:{seconds:00}";
+    }
+
+    public void StopTimer()
+    {
+        isTimerRunning = false;
+    }
+
+    public void ResumeTimer()
+    {
+        isTimerRunning = true;
+    }
+
+    public float GetRemainingTime()
+    {
+        return currentTime;
+    }
 }

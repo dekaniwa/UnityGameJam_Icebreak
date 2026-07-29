@@ -6,7 +6,6 @@ public class Score : MonoBehaviour
 
     public int score;
 
-    // 納品した果物の数
     public int appleCount;
     public int lemonCount;
     public int carrotCount;
@@ -15,7 +14,15 @@ public class Score : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void AddScore(int point)
@@ -26,5 +33,16 @@ public class Score : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    public void ResetData()
+    {
+        score = 0;
+
+        appleCount = 0;
+        lemonCount = 0;
+        carrotCount = 0;
+        bananaCount = 0;
+        orangeCount = 0;
     }
 }
