@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScoreText : MonoBehaviour
 {
-    TextMeshProUGUI text;
+    private TextMeshProUGUI text;
 
     void Start()
     {
@@ -12,6 +12,6 @@ public class ScoreText : MonoBehaviour
 
     void Update()
     {
-        text.text += Score.Instance.GetScore();
+        text.text = Score.Instance.GetScore().ToString();
     }
 }

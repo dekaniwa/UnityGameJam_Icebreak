@@ -21,12 +21,13 @@ public class ResultManager : MonoBehaviour
 
     void Update()
     {
+        // Aボタン または Jキーでゲームへ戻る
         if (Input.GetKeyDown(KeyCode.JoystickButton0) ||
             Input.GetKeyDown(KeyCode.J))
         {
             Score.Instance.ResetData();
 
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene("InGame");
         }
     }
 
@@ -50,9 +51,7 @@ public class ResultManager : MonoBehaviour
 
     GameObject GetRandomPrefab()
     {
-        int random = Random.Range(0, 5);
-
-        switch (random)
+        switch (Random.Range(0, 5))
         {
             case 0:
                 return applePrefab;

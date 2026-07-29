@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class FruitText : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
-    private TextMeshProUGUI text;
+    TextMeshProUGUI text;
 
     void Start()
     {
@@ -12,6 +12,6 @@ public class FruitText : MonoBehaviour
 
     void Update()
     {
-        text.text = Inventory.Instance.GetItemCount().ToString();
+        text.text = Score.Instance.GetScore().ToString();
     }
 }
