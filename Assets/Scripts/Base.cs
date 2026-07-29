@@ -49,7 +49,11 @@ public class Base : MonoBehaviour
         SpawnItems(carrotPrefab, Inventory.Instance.carrot);
         SpawnItems(bananaPrefab, Inventory.Instance.banana);
         SpawnItems(orangePrefab, Inventory.Instance.orange);
-
+        Score.Instance.appleCount += Inventory.Instance.apple;
+        Score.Instance.lemonCount += Inventory.Instance.lemon;
+        Score.Instance.carrotCount += Inventory.Instance.carrot;
+        Score.Instance.bananaCount += Inventory.Instance.banana;
+        Score.Instance.orangeCount += Inventory.Instance.orange;
         Inventory.Instance.apple = 0;
         Inventory.Instance.lemon = 0;
         Inventory.Instance.carrot = 0;
